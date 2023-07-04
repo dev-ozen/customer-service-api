@@ -39,10 +39,11 @@ public class CustomerServiceImpl implements CustomerService {
         if (selectedCustomer.isEmpty()){
             throw new RuntimeException("Not Found!");
         }
+        var x=getAddressData(selectedCustomer.get().getAddressId());
         return new CustomerResponseDto(
                 selectedCustomer.get().getId(),
                 selectedCustomer.get().getName(),
-                getAddressData(selectedCustomer.get().getAddressId()),
+                x,
                 selectedCustomer.get().getSalary()
         );
     }
@@ -79,9 +80,17 @@ public class CustomerServiceImpl implements CustomerService {
     }
 
     private AddressResponseDto getAddressData(String addressId){
-        Mono<AddressResponseDto> response = webClient.get().uri("/addresses/"+addressId)
+        /*Mono<AddressResponseDto> response = webClient.get().uri("/addresses/"+addressId)
                 .retrieve().bodyToMono(AddressResponseDto.class);
-        return response.block();
+        return response.block();*/
+        Mono<AddressResponseDto> addressResponseDtoMono = webClient.get().uri("/addresses/" + addressId)
+                .retrieve().bodyToMono(AddressResponseDto.class);
+        addressResponseDtoMono.subscribe(
+                details->{
+                    System.out.println(details.getCity());
+                }
+        );
+        return null;
     }
 
 }

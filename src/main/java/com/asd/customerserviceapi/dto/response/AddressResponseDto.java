@@ -1,9 +1,6 @@
 package com.asd.customerserviceapi.dto.response;
 
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 
 import javax.persistence.Id;
 
@@ -11,6 +8,7 @@ import javax.persistence.Id;
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
+@Data
 public class AddressResponseDto {
     private String id;
     private String country;
