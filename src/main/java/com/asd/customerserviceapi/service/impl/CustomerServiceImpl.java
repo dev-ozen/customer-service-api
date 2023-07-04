@@ -80,16 +80,8 @@ public class CustomerServiceImpl implements CustomerService {
     }
 
     private AddressResponseDto getAddressData(String addressId){
-        /*Mono<AddressResponseDto> response = webClient.get().uri("/addresses/"+addressId)
-                .retrieve().bodyToMono(AddressResponseDto.class);
-        return response.block();*/
-        Mono<AddressResponseDto> addressResponseDtoMono = webClient.get().uri("/addresses/" + addressId)
-                .retrieve().bodyToMono(AddressResponseDto.class);
-        addressResponseDtoMono.subscribe(
-                details->{
-                    System.out.println(details.getCity());
-                }
-        );
+        webClient.get().uri("http://localhost:8003/api/v1/addresses/"+addressId)
+                .retrieve().bodyToMono(AddressResponseDto.class).subscribe(data-> System.out.println(data.getCity()));
         return null;
     }
 
