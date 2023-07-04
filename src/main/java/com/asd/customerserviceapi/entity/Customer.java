@@ -16,6 +16,6 @@ public class Customer {
     @Id
     private String id;
     private String name;
-    private String address;
+    private String addressId;
     private double salary;
 }

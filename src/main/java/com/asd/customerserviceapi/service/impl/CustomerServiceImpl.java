@@ -23,8 +23,8 @@ public class CustomerServiceImpl implements CustomerService {
     @Override
     public void saveCustomer(CustomerRequestDto dto) {
         customerRepo.save(
-                new Customer(dto.getId(), dto.getName(),
-                        dto.getAddress(), dto.getSalary())
+                new Customer(dto.getId(), dto.getName(), dto.getAddressId(),
+                         dto.getSalary())
         );
     }
 
@@ -37,7 +37,7 @@ public class CustomerServiceImpl implements CustomerService {
         return new CustomerResponseDto(
                 selectedCustomer.get().getId(),
                 selectedCustomer.get().getName(),
-                selectedCustomer.get().getAddress(),
+                selectedCustomer.get().getAddressId(),
                 selectedCustomer.get().getSalary()
         );
     }
@@ -49,7 +49,6 @@ public class CustomerServiceImpl implements CustomerService {
             throw new RuntimeException("Not Found!");
         }
         selectedCustomer.get().setName(dto.getName());
-        selectedCustomer.get().setAddress(dto.getAddress());
         selectedCustomer.get().setSalary(dto.getSalary());
 
         customerRepo.save(selectedCustomer.get());
@@ -67,7 +66,7 @@ public class CustomerServiceImpl implements CustomerService {
              ) {
             list.add(
                     new CustomerResponseDto(
-                            c.getId(),c.getName(),c.getAddress(),c.getSalary()
+                            c.getId(),c.getName(),c.getAddressId(),c.getSalary()
                     )
             );
         }

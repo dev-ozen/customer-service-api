@@ -1,4 +1,4 @@
-package util;
+package com.asd.customerserviceapi.util;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
