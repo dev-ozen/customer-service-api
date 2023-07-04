@@ -5,13 +5,14 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-@AllArgsConstructor
-@NoArgsConstructor
+import javax.persistence.Id;
+
 @Getter
 @Setter
-public class CustomerResponseDto {
+@AllArgsConstructor
+@NoArgsConstructor
+public class AddressResponseDto {
     private String id;
-    private String name;
-    private AddressResponseDto address;
-    private double salary;
+    private String country;
+    private String city;
 }
